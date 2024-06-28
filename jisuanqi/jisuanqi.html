@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>计算器</title>
+  <link rel="stylesheet" type="text/css" href="css.css">
+</head>
+<body>
+<h1 style="text-align: center;">计算器</h1>
+<table width="200" align="center">
+  <tr>
+    <td colspan="5" align="right"><p id="int">0</p></td>
+  </tr>
+  <tr align="center" valign="middle">
+    <td><button onclick="addToDisplay('NEW')" value="NEW">NE</button></td>
+    <td><button onclick="clearDisplay()" value="CE">CE</button></td>
+    <td><button onclick="clearAll()" value="C">C</button></td>
+    <td><button onclick="addToDisplay('%')" value="%">%</button></td>
+    <td><button onclick="addToDisplay('/')" value="/">/</button></td>
+  </tr>
+  <tr align="center" valign="middle">
+    <td><button onclick="addToDisplay('**3')" value="X³">X³</button></td>
+    <td><button onclick="addToDisplay('7')" value="7">7</button></td>
+    <td><button onclick="addToDisplay('8')" value="8">8</button></td>
+    <td><button onclick="addToDisplay('9')" value="9">9</button></td>
+    <td><button onclick="addToDisplay('*')" value="*">*</button></td>
+  </tr>
+  <tr align="center" valign="middle">
+    <td><button onclick="addToDisplay('**2')" value="X²">X²</button></td>
+    <td><button onclick="addToDisplay('4')" value="4">4</button></td>
+    <td><button onclick="addToDisplay('5')" value="5">5</button></td>
+    <td><button onclick="addToDisplay('6')" value="6">6</button></td>
+    <td><button onclick="addToDisplay('-')" value="-">-</button></td>
+  </tr>
+  <tr align="center" valign="middle">
+    <td><button onclick="changeSign()" value="±">±</button></td>
+    <td><button onclick="addToDisplay('1')" value="1">1</button></td>
+    <td><button onclick="addToDisplay('2')" value="2">2</button></td>
+    <td><button onclick="addToDisplay('3')" value="3">3</button></td>
+    <td><button onclick="addToDisplay('+')" value="+">+</button></td>
+  </tr>
+  <tr align="center" valign="middle">
+    <td><button onclick="addToDisplay('(')" value="(">(</button></td>
+    <td><button onclick="addToDisplay(')')" value=")">)</button></td>
+    <td><button onclick="addToDisplay('0')" value="0">0</button></td>
+    <td><button onclick="addToDisplay('.')" value=".">.</button></td>
+    <td><button onclick="calculate()" value="=">=</button></td>
+  </tr>
+</table>
+    <a href="../directory.html"><button>返回</button></a>
+<script>
+  function addToDisplay(value) {
+    var display = document.getElementById('int');
+    if (value === 'NEW') {
+        var max = 100; 
+        display.textContent = parseInt(Math.random()*(max+1), 10);
+    } else if (display.textContent === '0' && value !== '.' && value !== '(') {
+        display.textContent = value;
+    } else {
+        display.textContent += value;
+    }
+  }
+
+  function clearDisplay() {
+    document.getElementById('int').textContent = '0';
+  }
+
+  function clearAll() {
+    document.getElementById('int').textContent = '0';
+  }
+
+  function changeSign() {
+    var display = document.getElementById('int');
+    var currentValue = parseFloat(display.textContent);
+    if (currentValue !== 0) {
+      display.textContent = -currentValue;
+    }
+  }
+
+  function calculate() {
+    var display = document.getElementById('int');
+    try {
+      var result = eval(display.textContent);
+      display.textContent = result;
+    } catch (error) {
+      display.textContent = 'Error';
+    }
+  }
+</script>
+</body>
+</html>
