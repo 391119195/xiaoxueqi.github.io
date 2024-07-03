@@ -20,12 +20,15 @@
             margin: 0;
             padding: 0;
             width: 15%;
-            background-color: #069;
+            background: linear-gradient(to bottom, #069, #033);
             position: fixed;
             height: 100%;
             overflow: auto;
             text-align: center;
-            border-right: 2px solid #ccc; /* Added border */
+            border-right: 2px solid #ccc;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
         }
 
         li {
@@ -35,10 +38,11 @@
         li a {
             display: block;
             color: white;
-            padding: 10px 16px;
+            padding: 15px 20px;
             text-decoration: none;
             font-size: 18px;
-            transition: background-color 0.3s; /* Smooth hover transition */
+            transition: background-color 0.3s, transform 0.3s;
+            border-radius: 5px;
         }
 
         li a.active {
@@ -47,16 +51,28 @@
 
         li a:hover:not(.active) {
             background-color: #555;
+            transform: scale(1.05);
+        }
+
+        li img {
+            width: 55%;
+            border-radius: 50%;
+            border: 8px solid transparent;
+            transition: transform 0.3s;
+        }
+
+        li img:hover {
+            transform: scale(1.1);
         }
 
         /* Main content styles */
-        #info, #resume, #skill, #dream {
-            margin-left: 20%; /* Adjusted margin for main content */
+        #info, #resume, #skill, #zuoyouming {
+            margin-left: 20%;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-            width: 60%; /* Adjusted width for main content */
+            width: 60%;
         }
 
         h1 {
@@ -87,29 +103,66 @@
             background-color: #f2f2f2;
         }
 
+        /* Skills section styles */
+        .skills-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .skill-item {
+            margin: 20px;
+            text-align: center;
+        }
+
+        .skill-item img {
+            width: 200px;
+            height: 150px;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .skill-item img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-item p {
+            margin-top: 10px;
+            font-size: 16px;
+            color: #333;
+        }
+
         /* Responsive adjustments */
         @media screen and (max-width: 800px) {
             ul {
                 width: 100%;
                 height: auto;
                 position: relative;
-                border-right: none; /* Remove right border on small screens */
+                border-right: none;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
             }
-            #info, #resume, #skill, #dream {
+            #info, #resume, #skill, #zuoyouming{
                 margin-left: 5%;
                 width: 90%;
+            }
+            .skill-item img {
+                width: 150px;
+                height: 150px;
             }
         }
     </style>
 </head>
 <body>
     <ul>
-        <li><img src="img/1.jpg" style="width: 55%; border-radius: 50%; border: 8px solid transparent;"></li>
+        <li><img src="img/1.jpg" alt="Profile Picture"></li>
         <li><a href="index.html">主页</a></li>
         <li><a href="#info">基本信息</a></li>
         <li><a href="#resume">个人简介</a></li>
         <li><a href="#skill">技能</a></li>
-        <li><a href="#dream">梦想</a></li>
+        <li><a href="#zuoyouming">座右铭</a></li>
         <li><a href="jisuanqi/jisuanqi.html">计算器</a></li>
     </ul>
 
@@ -142,33 +195,86 @@
     </div>
 
     <div id="skill">
+        <h1>&nbsp;</h1>
+        <h1>&nbsp;</h1>
+        <h1>&nbsp;</h1>
         <h1>技能</h1>
-        <div>
-            <h3>课程内所学技能：</h3>
-            <img src="img/3.jpg" width="200" height="150" style="border-radius: 50%; margin-left: 50px;">
-            <img src="img/1.png" width="200" height="150" style="border-radius: 50%; margin-left: 50px;">
-            <img src="img/4.png" width="200" height="150" style="border-radius: 50%; margin-left: 50px;">
-            <br><br>
-            <p style="margin-left: 120px; display: inline;">云平台搭建</p>
-            <p style="margin-left: 120px; display: inline;">Docker</p>
-            <p style="margin-left: 215px; display: inline;">Linux</p>
-            <br><br>
-            <img src="img/2-1.jpg" width="200" height="150" style="border-radius: 50%; margin-left: 50px;">
-            <img src="img/3.png" width="130" height="120" style="border-radius: 50%; margin-left: 120px;">
-            <img src="img/5.png" width="130" height="120" style="border-radius: 50%; margin-left: 130px;">
-            <br><br>
-            <p style="margin-left: 110px; display: inline;">HTML语言</p>
-            <p style="margin-left: 182px; display: inline;">CSS样式</p>
-            <p style="margin-left: 190px; display: inline;">Python</p>
+        <div class="skills-section">
+            <div class="skill-item">
+                <img src="img/3.jpg" alt="云平台搭建">
+                <p>云平台搭建</p>
+            </div>
+            <div class="skill-item">
+                <img src="img/1.png" alt="Docker">
+                <p>Docker</p>
+            </div>
+            <div class="skill-item">
+                <img src="img/4.png" alt="Linux">
+                <p>Linux</p>
+            </div>
+            <div class="skill-item">
+                <img src="img/2-1.jpg" alt="HTML语言">
+                <p>HTML语言</p>
+            </div>
+            <div class="skill-item">
+                <img src="img/3.png" alt="CSS样式">
+                <p>MySQL</p>
+            </div>
+            <div class="skill-item">
+                <img src="img/5.png" alt="Python">
+                <p>Python</p>
+            </div>
         </div>
     </div>
 
-    <div id="dream">
-        <h1>梦想</h1>
-        <p>
-            梦想是实现财富自由，通俗点来说就是能满足日常生活的开销，想去旅游或者玩的时候不会太受金钱的限制，还有就是如果家人生病需要住院什么的，不会太为了医药的费用而去去发愁。
-            目前在大学阶段的梦想或者说目标是学好本专业的专业知识，打好基础，争取多去参加一些比赛，锻炼自己的能力。
+    <div id="zuoyouming">
+        <h1>&nbsp;</h1>
+        <h1>&nbsp;</h1>
+        <h1>&nbsp;</h1>
+        <h1>座右铭</h1>
+        <p style="min-height: 600px;">
+            别羡慕他人的生活，用心过好自己的日子，珍惜所拥有的一切。<br>
+            Don't envy other people's life, live your life carefully and cherish everything you have.              
+            <br>艰难困苦出能人。<br>
+            Bad times make a good man.<br>
+            世界上对勇气的最大考验是忍受失败而不丧失信心。<br>
+            The greatest test of courage on earth is to bear defeat without losing heart.<br>
+            就是失去了一切别的，也还有未来。<br>
+            When all else is lost the future still remains.<br>
+            对明天做好的准备就是今天做到最好！<br>
+            The best preparation for tomorrow is doing your best today.
+
         </p>
     </div>
+
+    <script>
+        // 突出显示当前部分的侧边栏功能
+        function highlightCurrentSection() {
+            var sections = document.querySelectorAll('div[id]');
+            var links = document.querySelectorAll('ul li a');
+            var fromTop = window.scrollY + 10;
+
+            sections.forEach(section => {
+                var sectionTop = section.offsetTop;
+                var sectionHeight = section.offsetHeight;
+                var sectionId = section.getAttribute('id');
+
+                if (
+                    fromTop >= sectionTop &&
+                    fromTop < sectionTop + sectionHeight
+                ) {
+                    links.forEach(link => {
+                        link.classList.remove('active');
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').substring(1) === sectionId) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }
+
+        window.addEventListener('scroll', highlightCurrentSection);
+    </script>
 </body>
 </html>
