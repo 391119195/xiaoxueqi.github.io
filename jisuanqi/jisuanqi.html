@@ -76,9 +76,9 @@ function addToDisplay(value) {
     isResultShown = false;
   }
 
-  var isSymbol = ['+', '-', '*', '/'].includes(value); // 检查输入是否为运算符
+  var isSymbol = ['+', '-', '*', '/',"%"].includes(value); // 检查输入是否为运算符
   var lastChar = currentValue[currentValue.length - 1]; // 获取当前显示内容的最后一个字符
-  var lastIsSymbol = ['+', '-', '*', '/'].includes(lastChar); // 检查最后一个字符是否为运算符
+  var lastIsSymbol = ['+', '-', '*', '/','%'].includes(lastChar); // 检查最后一个字符是否为运算符
 
   // 如果输入为运算符且最后一个字符也是运算符，则不做处理直接返回
   if (isSymbol && lastIsSymbol) {
