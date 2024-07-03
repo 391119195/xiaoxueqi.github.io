@@ -51,9 +51,15 @@
 <script>
 var isResultShown = false; // 标记是否显示了计算结果
 var lastClickedValue = ''; // 保存最后点击的按钮值
+var lastOperation = ''; // 保存最后的操作类型
 
 function buttonClick(value) {
+  if (['+', '-', '*', '/'].includes(value)) {
+    lastOperation = value; // 更新最后操作类型
+  }
+
   lastClickedValue = value; // 更新最后点击的按钮值
+
   if (value === 'CE') {
     clearDisplay();
   } else if (value === 'C') {
@@ -68,7 +74,7 @@ function buttonClick(value) {
 function addToDisplay(value) {
   var display = document.getElementById('int');
   var currentValue = display.textContent.trim();
-  
+
   if (isResultShown && !isNaN(value)) {
     display.textContent = '';
     isResultShown = false;
@@ -83,7 +89,7 @@ function addToDisplay(value) {
   if (isSymbol && lastIsSymbol) {
     return;
   }
-  
+
   if (value === '.' && currentValue.includes('.')) {
     return;
   }
@@ -121,7 +127,7 @@ function clearAll() {
   var display = document.getElementById('int');
   var currentValue = display.textContent.trim();
 
-  //实现点击C去减去输出的最后一个
+  // 实现点击C去减去输出的最后一个
   if (currentValue.length > 0) {
     display.textContent = currentValue.slice(0, -1);
   }
@@ -155,10 +161,28 @@ function calculate() {
 
     // 如果结果已经显示，处理这种情况
     if (isResultShown && !isNaN(lastClickedValue)) {
-      // 如果最后点击的值是数字，则使用它，否则默认为0
       var lastValue = parseFloat(lastClickedValue);
       if (!isNaN(lastValue)) {
-        result = parseFloat(result) + lastValue;
+        switch (lastOperation) {
+          case '+':
+            result = parseFloat(result) + lastValue;
+            break;
+          case '-':
+            result = parseFloat(result) - lastValue;
+            break;
+          case '*':
+            result = parseFloat(result) * lastValue;
+            break;
+          case '/':
+            if (lastValue !== 0) {
+              result = parseFloat(result) / lastValue;
+            } else {
+              console.error("Division by zero is not allowed.");
+            }
+            break;
+          default:
+            break;
+        }
       }
     }
 
